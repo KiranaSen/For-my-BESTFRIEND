@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Best Friends 💙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(#eef3ff, #dbe7ff);
+      color: #333;
+      text-align: center;
+    }
+
+    .screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      color: #4d6bff;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 30px;
+      background: #4d6bff;
+      color: lavender;
+      cursor: pointer;
+      margin: 15px;
+    }
+
+    .slideshow img {
+      width: 90%;
+      max-width: 700px;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin: 30px 0;
+    }
+
+    .message-box {
+      background: yellow;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 700px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .goodbye h1 {
+      font-size: 3em;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Floating hearts */
+    .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 6s linear forwards;
+    pointer-events: none;
+   }
+
+   @keyframes floatUp {
+     0% {
+       transform: translateY(0);
+       opacity: 1;
+     }
+     100% {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+  .secret-trigger {
+  font-size: 0.9em;
+  color: #6b7cff;
+  cursor: pointer;
+  margin-top: 25px;
+  opacity: 0.8;
+}
+
+.secret-trigger:hover {
+  text-decoration: underline;
+}
+
+.secret-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #4d6bff;
+  animation: fadeIn 2s forwards;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- INTRO -->
+  <div class="screen" id="intro">
+    <h1>Press Play to Re-live Us 🎧</h1>
+    <button onclick="start()">▶ Play</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="screen hidden" id="main">
+    <audio id="music" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="slideshow">
+      <img id="slide" src="images/photo1.jpg">
+    </div>
+
+    <div class="message-box">
+      <h2>Dear Mutta Bondaa (aka) Varshhh, DD and Glo..💙</h2>
+      <p>
+        From shared benches to shared secrets,  
+        these 5 damn years of school became unforgettable because of you ppl.
+      </p>
+      <p>
+        No matter where life takes us next,  
+        you guys will always be my safest place.
+        All the most dumbest jokes that we have laughed at, all those small and childish fights
+        that we have had, those endless daydreamings, those combined classes that turned into
+        story telling sessions, moments of sharing our lunch, and the infinite love that we
+        shared will always be in my heart.
+DD have been my Marvel Partner and storyteller and she still is, who shares my vibe of roasting others.
+Glo - my spotifyy and meme partner... has never judged mee, EVERRR..
+Varsh remained to be my personal diary, to whome I like to share anything without any hesitation. 
+Im really gratefull for the trio that I once were a part of (DD,Varsh) and the trio that Im currently there in (Varsh,Glo). 
+Thankyou guys for annoying me and for coping up with my wierdness, lame jokes. Im sure that one day we will all meet somewhere and eat "CHICKENLESS BONE" together..
+      </p>
+      <p><strong>Always yours, Kiruu 💙</strong></p>
+    </div>
+
+    <button onclick="goToGoodbye()">Next Page 💙</button>
+  </div>
+
+  <!-- GOODBYE -->
+  <div class="screen hidden goodbye" id="goodbye">
+  <h1>Goodbye, My Best Friends 💙</h1>
+  <p>End of school, not the end of us.</p>
+
+  <p class="secret-trigger" onclick="showSecret()">
+    Tap here (For Varshh)…
+  </p>
+
+  <p class="secret-message hidden" id="secret">  
+    You will always be my favourite person  
+    from my favourite chapter 💙 YOU FAT PIGGG..
+  </p>
+
+  <button onclick="replay()">Replay from Start 🔁</button>
+</div>
+
+  <script>
+    function showSecret() {
+  document.getElementById("secret").classList.remove("hidden");
+}
+
+    let heartInterval;
+
+    function startHearts() {
+    heartInterval = setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💙";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 500);
+}
+
+function stopHearts() {
+  clearInterval(heartInterval);
+}
+
+    const images = [
+      "images/photo1.jpg",
+      "images/photo2.jpg",
+      "images/photo3.jpg",
+      "images/photo4.jpg",
+      "images/photo5.jpg",
+      "images/photo6.jpg",
+      "images/photo7.jpg",
+      "images/photo8.jpg",
+      "images/photo9.jpg",
+      "images/photo10.jpg",
+      "images/photo11.jpg",
+      "images/photo12.jpg",
+      "images/photo13.jpg",
+      "images/photo14.jpg"
+    ];
+
+    let index = 0;
+    let interval;
+    const slide = document.getElementById("slide");
+    const music = document.getElementById("music");
+
+    function start() {
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("main").classList.remove("hidden");
+      music.currentTime = 30
+      music.play();
+
+      interval = setInterval(() => {
+        index = (index + 1) % images.length;
+        slide.src = images[index];
+      }, 3000);
+    }
+
+    function goToGoodbye() {
+      clearInterval(interval);
+      document.getElementById("main").classList.add("hidden");
+      document.getElementById("goodbye").classList.remove("hidden");
+      startHearts();
+    }
+
+    function replay() {
+      stopHearts();
+      index = 0;
+      slide.src = images[0];
+      document.getElementById("goodbye").classList.add("hidden");
+      document.getElementById("intro").classList.remove("hidden");
+      music.pause();
+      music.currentTime = 0;
+    }
+  </script>
+
+</body>
+</html>
